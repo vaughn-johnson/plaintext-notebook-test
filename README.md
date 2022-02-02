@@ -138,12 +138,10 @@ It is important, however, that other people are able to reproduce your venv. In 
 conda conda env export > venv.yml
 ```
 
-You can use the `--form-history` flag, which will produce the same output, but only include the dependencies you explicitly added. Those sub-dependencies will still be inferrable, but the it makes the file much easier to read
-
 The person wishing to reproduce the results of the notebook can now recreate the enviornment with
 
 ```shell
-conda create --name ... --file venv.yml
+conda env create --file venv.yml
 ```
 
 ```{code-cell} ipython3
