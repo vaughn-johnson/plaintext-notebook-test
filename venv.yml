@@ -1,0 +1,10 @@
+name: plaintext-notebook
+channels:
+  - defaults
+dependencies:
+  - numpy
+  - plotly
+  - jupyter
+  - pandas
+  - jupyter-book
+prefix: /Users/vneck/anaconda3/envs/plaintext-notebook
