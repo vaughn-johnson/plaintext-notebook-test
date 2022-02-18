@@ -1,4 +1,4 @@
-name: base
+name: plaintext
 channels:
   - conda-forge
   - defaults
