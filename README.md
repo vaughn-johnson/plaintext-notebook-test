@@ -32,7 +32,7 @@ You'll need to begin by installing
 
 
 
-## Virtual enviornments and kernels
+## Virtual environments and kernels
 
 ### Anaconda
 Anaconda is a virtual environment manager. Virtual environments (venvs) allow
@@ -76,17 +76,31 @@ its own dependencies.
 The Python version of the kernel is determined by what version of Python is used
 to create the kernel (or venv).
 
+### IR kernel
+The [IR kernel](https://irkernel.github.io/) is the runtime environment used by
+Jupyter to execute R in the notebook.
+
+You can install the kernel in R by following the instructions
+[here](https://irkernel.github.io/installation/)
+
+```R
+install.packages('IRkernel')
+IRkernel::installspec(user = FALSE)
+```
 
 ## Jupyter and Jupyter Book
 
 ### Jupyter
 Jupyter is software that enables you to interact with notebooks. At its core, it
-is a server. You can check that you have it installed correctly by initiating a
+is a server. You can check that you have installed it correctly by initiating a
 server instance on your local machine
 
 ```shell
 jupyter notebook
 ```
+
+In your browser, this should open automatically open the localhost url that the
+server is running on.
 
 ### Jupytext and Kernels
 Notebooks are great, but the major drawback is that the data representation of
@@ -135,17 +149,15 @@ conda create --name my-venv jupyter ipykernel
 conda activate my-venv
 ```
 
-Then you'll need to add `jupyter book`
+You can then initialize a markdown file that will house our new notebook.
 
 ```shell
-conda install -c conda-forge jupyter-book
+echo "# Hello World\n👋👋👋" > README.md
 ```
 
-You can then create your first Jupyter book and initialize a markdown file that
-will house our new notebook.
+You can then automatically add the relevant Jupytext metadata
 ```shell
-jupyter-book create my-notebook
-jupyter-book myst init my-notebook/README.md
+jupyter-book myst init README.md --kernel python3
 ```
 
 You can then launch `jupyter` in your `base` environment to view that notebook
@@ -155,17 +167,21 @@ in the Jupyter UI.
 juputer notebook
 ```
 
-If everything has gone right, you should be able to open the markdown file as a
-notebook! As you make changes to `README.me`, jupyter-book will automatically
-update `README.ipynb` to reflect to those changes. Make sure to select the
-`my-env` venv from the list of kernels in the notebook.
+If everything has gone right, you should be able to open the `README.md`
+markdown file as a notebook! Make sure to select the `my-env` venv from the list
+of kernels in the notebook.
 
 ### Sharing the notebook
-`jupyter-book create` will add certain files that will soemtimes not be
-relevant. `README.md` is all you _strictly_ need, though without `README.ipynb`
-your output will not be cached so others will have to rerun your notebook to see
-your outputs. `_config.yml` will have some configurations that may or may not be
-relevant ot what you're working on. Check
+You can use
+
+```shell
+jupyter-book create
+```
+to add certain files that will sometimes be relevant. A markdown file is all you
+_strictly_ need, though `jupyter-book create` will also create a `.ipynb` files
+as well, which are useful for caching output so others don't have to rerun your
+code. `_config.yml` will have some configurations that may or may not be
+relevant to what you're working on. Check
 [here](https://jupyterbook.org/customize/config.html) to see what you should
 keep. Everything else has its place, but for most projects can be removed
 without issue.
