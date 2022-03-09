@@ -83,9 +83,9 @@ Jupyter to execute R in the notebook.
 You can install the kernel in R by following the instructions
 [here](https://irkernel.github.io/installation/)
 
-```R
-install.packages('IRkernel')
-IRkernel::installspec(user = FALSE)
+```shell
+conda install -c conda-forge r-irkernel
+R -e 'IRkernel::installspec()'
 ```
 
 ## Jupyter and Jupyter Book
